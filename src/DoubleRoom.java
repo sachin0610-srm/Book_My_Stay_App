@@ -1,18 +1,7 @@
-public class DoubleRoom extends Room {
 
-    private int available;
-
-    public DoubleRoom(int beds, int size, double price, int available) {
-        super(beds, size, price);
-        this.available = available;
-    }
-
-    public void displayRoomInfo() {
-        System.out.println("Double Room:");
-        System.out.println("Beds: " + numberOfBeds);
-        System.out.println("Size: " + squareFeet + " sqft");
-        System.out.println("Price per night: " + pricePerNight);
-        System.out.println("Available: " + available);
-        System.out.println();
+class DoubleRoom extends Room {
+    public DoubleRoom() {
+        super("Double", 2, 400, 2500.0);
+        this.availability = 3;
     }
 }
