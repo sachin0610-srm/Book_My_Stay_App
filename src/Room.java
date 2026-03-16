@@ -1,16 +1,34 @@
-public abstract class Room {
-    protected int numberOfBeds;
-    protected int squareFeet;
-    protected double pricePerNight;
+class Room {
+    private String name;
+    private int numberOfBeds;
+    private int squareFeet;
+    private double pricePerNight;
 
-    public Room(int numberOfBeds, int squareFeet, double pricePerNight) {
+    Room(String name, int numberOfBeds, int squareFeet, double pricePerNight) {
+        this.name = name;
         this.numberOfBeds = numberOfBeds;
         this.squareFeet = squareFeet;
         this.pricePerNight = pricePerNight;
     }
-    public void displayRoomDetails() {
-        System.out.println("Number of Beds: " + numberOfBeds);
-        System.out.println("Square Feet: " + squareFeet);
-        System.out.println("Price per Night: $" + pricePerNight);
+
+    public String getName() {
+        return name;
+    }
+    public int getBeds() {
+        return numberOfBeds;
+    }
+    public int getSize() {
+        return squareFeet;
+    }
+    public double getPricePerNight() {
+        return pricePerNight;
+    }
+
+    public void displayRoomInfo(int available) {
+        System.out.println(name + " Room:");
+        System.out.println("  Beds: " + numberOfBeds);
+        System.out.println("  Size: " + squareFeet + " sqft");
+        System.out.println("  Price per night: " + pricePerNight);
+        System.out.println("  Available: " + available + "\n");
     }
 }
