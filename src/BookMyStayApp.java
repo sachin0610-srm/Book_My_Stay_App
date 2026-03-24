@@ -27,7 +27,6 @@ class RoomInventory {
 class BookingRecord {
     private Map<String, String> bookings = new HashMap<>();
 
-    // Add booking (for simulation)
     public void addBooking(String reservationId, String roomType) {
         bookings.put(reservationId, roomType);
     }
@@ -56,25 +55,20 @@ class CancellationService {
                               BookingRecord record,
                               RoomInventory inventory) {
 
-        // Validate booking existence
         if (!record.exists(reservationId)) {
             System.out.println("Cancellation failed: Reservation not found.");
             return;
         }
 
-        // Get room type
         String roomType = record.getRoomType(reservationId);
 
-        // Push to rollback stack (LIFO)
         rollbackStack.push(reservationId);
 
-        // Restore inventory
         inventory.increaseRoom(roomType);
 
-        // Remove booking
         record.removeBooking(reservationId);
 
-        // Output (MATCHES YOUR SCREENSHOT)
+        // EXACT OUTPUT
         System.out.println("Booking cancelled successfully. Inventory restored for room type: " + roomType);
 
         System.out.println("\nRollback History (Most Recent First):");
@@ -88,7 +82,7 @@ class CancellationService {
 }
 
 // =======================
-// Main Class
+// MAIN CLASS (ONLY PUBLIC)
 // =======================
 public class BookMyStayApp {
 
@@ -96,15 +90,13 @@ public class BookMyStayApp {
 
         System.out.println("Booking Cancellation");
 
-        // Initialize system
         RoomInventory inventory = new RoomInventory();
         BookingRecord record = new BookingRecord();
         CancellationService service = new CancellationService();
 
-        // Simulate an existing booking
+        // Simulated booking
         record.addBooking("Single-1", "Single");
 
-        // Perform cancellation
         service.cancelBooking("Single-1", record, inventory);
     }
 }
